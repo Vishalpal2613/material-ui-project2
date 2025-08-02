@@ -1,12 +1,13 @@
 import React from 'react';
 import Test from './Test';
+import Data from './Data';
 
 
 
 function App() {  
 return (
     <div>
-      <Test />
+      <Data />
     </div>
   );
 }
