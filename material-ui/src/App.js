@@ -1,6 +1,6 @@
 import React from 'react';
-import Test from './Test';
-import Data from './Data';
+
+import Data from './Data'; 
 
 
 
