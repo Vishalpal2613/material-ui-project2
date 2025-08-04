@@ -1,13 +1,19 @@
 import React from 'react';
+import {Routes, Route } from 'react-router-dom'
 
 import Data from './Data'; 
+import { DataItem } from './DataItem';
 
 
 
 function App() {  
 return (
     <div>
-      <Data />
+     <Routes>
+      <Route path="/" element={<Data />} />
+      <Route path="/:id" element={<DataItem />} />
+
+     </Routes>
     </div>
   );
 }

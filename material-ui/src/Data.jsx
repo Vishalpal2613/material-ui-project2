@@ -1,7 +1,12 @@
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import AssignmentLateSharpIcon from '@mui/icons-material/AssignmentLateSharp';
+import DatagridToolbar from './DatagridToolbar';
 
 
 
@@ -11,15 +16,19 @@ const columns = [
         headerName: "ID",
         width: 60,
         renderCell: ((params) => {
-            return;
+            return (
+                <Link style={{ color: "black", textUnderlineOffset: 5 }} to={`/&{params.value}`}>
+                    <Typography>{params.value}</Typography>
+                </Link>
+            );
         })
     },
-     {
+    {
         field: "userid",
-        headerName: " User ID",
+        headerName: "User ID",
         width: 70,
     },
-     {
+    {
         field: "todo",
         headerName: "Todo",
         width: 400,
@@ -27,6 +36,9 @@ const columns = [
         field: "completed",
         headerName: "Completed",
         width: 400,
+        renderCell: (params) => {
+            return params.value ? (<AssignmentLateSharpIcon sx={{ color: "orangered" }} />) : (<AssignmentTurnedInIcon sx={{ color: "green" }} />)
+        }
     },
 ];
 
@@ -53,7 +65,11 @@ const Data = () => {
 
         <Card sx={{ padding: 5 }}>
             <CardHeader title="Todos List"></CardHeader>
-            <DataGrid loading={loading} sx={{height: 500}} columns={columns} rows={todos}/>
+            <DataGrid
+                components={{ Toolbar: DatagridToolbar }}
+                loading={loading}
+                sx={{ height: 500 }}
+                columns={columns} rows={todos} />
 
 
         </Card>
