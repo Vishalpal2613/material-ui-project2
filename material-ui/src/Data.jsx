@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import AssignmentLateSharpIcon from '@mui/icons-material/AssignmentLateSharp';
 import DatagridToolbar from './DatagridToolbar';
+import Button from '@mui/material/Button';
 
 
 
@@ -66,10 +67,12 @@ const Data = () => {
         <Card sx={{ padding: 5 }}>
             <CardHeader title="Todos List"></CardHeader>
             <DataGrid
-                components={{ Toolbar: DatagridToolbar }}
+                components={{ Toolbar: DatagridToolbar, baseButton: Button }}
                 loading={loading}
                 sx={{ height: 500 }}
-                columns={columns} rows={todos} />
+                columns={columns} rows={todos}
+                componentsProps={{ baseButton: { variant: "outline" }, }}
+            />
 
 
         </Card>
