@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 
 
 
+
 const columns = [
     {
         field: "id",
@@ -18,14 +19,14 @@ const columns = [
         width: 60,
         renderCell: ((params) => {
             return (
-                <Link style={{ color: "black", textUnderlineOffset: 5 }} to={`/&{params.value}`}>
+                <Link style={{ color: "black", textUnderlineOffset: 5 }} to={`/${params.value}`}>
                     <Typography>{params.value}</Typography>
                 </Link>
             );
         })
     },
     {
-        field: "userid",
+        field: "userId",
         headerName: "User ID",
         width: 70,
     },
@@ -51,7 +52,7 @@ const Data = () => {
         async function fetchTodos() {
             setLoading(true);
             await fetch("https://dummyjson.com/todos")
-                .then((res) => res.json())
+                .then((response) => response.json())
                 .then((data) => setTodos(data.todos))
                 .catch((err) => console.log(err))
                 .finally(() => setLoading(false));
@@ -73,8 +74,6 @@ const Data = () => {
                 columns={columns} rows={todos}
                 componentsProps={{ baseButton: { variant: "outline" }, }}
             />
-
-
         </Card>
     )
 

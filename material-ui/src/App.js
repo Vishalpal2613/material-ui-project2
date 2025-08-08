@@ -1,8 +1,7 @@
 import React from 'react';
-import {Routes, Route } from 'react-router-dom'
-
+import {Routes, Route } from 'react-router-dom';
 import Data from './Data'; 
-import { DataItem } from './DataItem';
+import DataItem  from './DataItem';
 
 
 
@@ -11,8 +10,7 @@ return (
     <div>
      <Routes>
       <Route path="/" element={<Data />} />
-      <Route path="/:id" element={<DataItem />} />
-
+      <Route path="/:id" element={<DataItem todo={null} />} />
      </Routes>
     </div>
   );
