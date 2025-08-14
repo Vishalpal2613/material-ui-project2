@@ -17,7 +17,7 @@ const DataItem = () => {
         const data = await res.json();
         setTodo(data);
       }catch (err) {
-        console.log(err);
+        console.log(err); 
       }
     }
     fetchTodos();
