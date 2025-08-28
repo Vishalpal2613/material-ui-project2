@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Box, TextField, Typography, Button } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 
 const Auth = () => {
@@ -75,13 +77,15 @@ const Auth = () => {
             text="password"
             variant="outlined"
             placeholder="Password" />
-          <Button type='Submit'
+          <Button endIcon={isSignup ? <HowToRegIcon /> : <LoginIcon />}
+            type='Submit'
             variant="contained"
             color="warning"
             sx={{ marginTop: 3, borderRadius: 3 }}>
             {isSignup ? "Signup" : "Login"}
           </Button>
-          <Button
+          <Button 
+          endIcon={isSignup ? <LoginIcon /> : <HowToRegIcon /> }
             onClick={resetState}
             sx={{ marginTop: 3, borderRadius: 3 }}>
             Change To {isSignup ? "Login" : "Signup"}
