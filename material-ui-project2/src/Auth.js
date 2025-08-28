@@ -1,23 +1,93 @@
-import React from 'react'
-import { Box, TextField, Typography, Button} from '@mui/material';
+import React, { useState } from 'react'
+import { Box, TextField, Typography, Button } from '@mui/material';
+
 
 const Auth = () => {
+  const [isSignup, setIsSignup] = useState(false);
+  const [inpust, setInpust] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    setInpust((prevState) => ({
+       ...prevState,
+      [e.target.name] : e.target.value
+    }))
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inpust); 
+  };
+  const resetState = () => {
+    setIsSignup(!isSignup);
+    setInpust({name:'', email:'', password:''})
+  }
+
   return (
     <div>
-        <form>
-            <Box display='flex' flexDirection={"column"} maxWidth={400} alignItems='center' justifyContent={"center"} margin={"auto"} marginTop={5} padding={3}
-            borderRadius={5} boxShadow={"5px 5px 10px #ccc"} sx={{":hover": {
-                boxShadow:'10px 10px 20px #ccc',
-            }}}>
-                <Typography variant='h2' padding={3} textAlign={"center"}>Login</Typography>
-                <TextField margin='normal' text={'text'} variant='outlined' placeholder='Name' />
-                <TextField margin='normal' text={'email'} variant='outlined' placeholder='Email' />
-                <TextField margin='normal' text={'password'} variant='outlined' placeholder='Password' />
-                 <Button variant='contained' color='warning' sx={{marginTop: 3, borderRadius: 3}}>Login</Button>
-                 <Button sx={{marginTop: 3, borderRadius: 3}}>Change to Signup</Button>
+      <form onSubmit={handleSubmit}>
+        <Box
+          display='flex'
+          flexDirection={"column"}
+          maxWidth={400}
+          alignItems='center'
+          justifyContent={"center"}
+          margin={"auto"}
+          marginTop={5}
+          padding={3}
+          borderRadius={5}
+          boxShadow={"5px 5px 10px #ccc"} sx={{
+            ":hover": {
+              boxShadow: '10px 10px 20px #ccc',
+            }
+          }}>
 
-            </Box>
-        </form>
+          <Typography
+            variant='h2'
+            padding={3}
+            textAlign={"center"}>
+            {isSignup ? "Signup" : "Login"}
+          </Typography>
+          {isSignup && (
+            <TextField
+            onChange={handleChange}
+              name="name"
+              value={inpust.name}
+              margin="normal"
+              text="text"
+              variant="outlined"
+              placeholder="Name" />
+          )}
+          <TextField
+          onChange={handleChange}
+            name="email"
+            value={inpust.email}
+            margin="normal"
+            text="email"
+            variant="outlined"
+            placeholder="Email" />
+          <TextField
+          onChange={handleChange}
+            value={inpust.password}
+            name="password"
+            margin="normal"
+            text="password"
+            variant="outlined"
+            placeholder="Password" />
+          <Button type='Submit'
+            variant="contained"
+            color="warning"
+            sx={{ marginTop: 3, borderRadius: 3 }}>
+            {isSignup ? "Signup" : "Login"}
+          </Button>
+          <Button
+            onClick={resetState}
+            sx={{ marginTop: 3, borderRadius: 3 }}>
+            Change To {isSignup ? "Login" : "Signup"}
+          </Button>
+        </Box>
+      </form>
     </div>
   )
 }
